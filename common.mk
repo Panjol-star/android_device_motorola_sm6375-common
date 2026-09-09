@@ -371,4 +371,5 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, vendor/motorola/sm6375-common/sm6375-common-vendor.mk)
 
 # Dolby
+# https://github.com/crdroidandroid/android_hardware_dolby.git branch LunarisDolby
 $(call inherit-product, hardware/dolby/dolby.mk)
