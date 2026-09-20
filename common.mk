@@ -372,3 +372,4 @@ $(call inherit-product, vendor/motorola/sm6375-common/sm6375-common-vendor.mk)
 # Dolby
 # https://github.com/crdroidandroid/android_hardware_dolby.git branch LunarisDolby
 $(call inherit-product, hardware/dolby/dolby.mk)
+$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
