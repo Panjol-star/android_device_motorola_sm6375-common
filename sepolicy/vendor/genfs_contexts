@@ -1,0 +1,2 @@
+# Charge Bypass Control
+genfscon sysfs /module/qpnp_adaptive_charge/parameters u:object_r:sysfs_battery_supply:s0

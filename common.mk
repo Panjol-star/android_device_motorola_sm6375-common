@@ -77,31 +77,31 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.usb.default \
     liba2dpoffload \
-    libbatterylistener \
-    libcirrusspkrprot \
-    libcomprcapture \
-    libexthwplugin \
-    libhdmiedid \
-    libhfp \
-    libqcompostprocbundle \
+    libaudiopreprocessing \
+    libbundlewrapper \
+    libdownmix \
+    libdynproc \
+    libeffectproxy \
+    libldnhncr \
     libqcomvisualizer \
     libqcomvoiceprocessing \
+    libreverbwrapper \
+    libvisualizer \
+    libhdmiedid \
+    libhfp \
     libsndmonitor \
     libspkrprot \
-    libvolumelistener \
     sound_trigger.primary.holi
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
-    $(LOCAL_PATH)/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
-    $(LOCAL_PATH)/audio/audio_policy_configuration_offload_disabled.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration_offload_disabled.xml \
-    $(LOCAL_PATH)/audio/bluetooth_hearing_aid_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_hearing_aid_audio_policy_configuration.xml \
-    $(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_mixer_paths.xml \
-    $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_platform_info.xml
+    $(LOCAL_PATH)/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
 
 PRODUCT_COPY_FILES += \
+    frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml
+    frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
 
 # Board API level
 BOARD_SHIPPING_API_LEVEL := 30
@@ -197,8 +197,6 @@ $(call soong_config_set_bool,livedisplay_sysfs,enable_se,true)
 PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
 
-$(call soong_config_set,lineage_health,charging_control_charging_path,/sys/module/qpnp_adaptive_charge/parameters/charging_enabled)
-
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/media/blair/media_codecs_performance_blair.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_blair.xml \
@@ -266,7 +264,11 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service-qti
+    android.hardware.power-service.lineage-libperfmgr \
+    libqti-perfd-client
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
 # Properties
 PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
@@ -283,7 +285,11 @@ PRODUCT_PACKAGES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-    hardware/motorola
+    hardware/google/interfaces \
+    hardware/google/pixel \
+    hardware/lineage/interfaces/power-libperfmgr \
+    hardware/motorola \
+    hardware/qcom-caf/common/libqti-perfd-client
 
 # Telephony
 PRODUCT_PACKAGES += \
@@ -365,7 +371,7 @@ PRODUCT_COPY_FILES += \
 
 # Inherit from vendor blobs
 $(call inherit-product, vendor/motorola/sm6375-common/sm6375-common-vendor.mk)
-
 # Dolby
 # https://github.com/crdroidandroid/android_hardware_dolby.git branch LunarisDolby
 $(call inherit-product, hardware/dolby/dolby.mk)
+$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
