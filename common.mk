@@ -375,7 +375,8 @@ PRODUCT_COPY_FILES += \
 
 # Inherit from vendor blobs
 $(call inherit-product, vendor/motorola/sm6375-common/sm6375-common-vendor.mk)
-# Dolby
-# https://github.com/crdroidandroid/android_hardware_dolby.git branch LunarisDolby
+
+# crdroidandroid/android_hardware_dolby LunarisDolby
 $(call inherit-product, hardware/dolby/dolby.mk)
+# AxionAOSP/android_packages_apps_ViPER4AndroidFX v4a
 $(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
