@@ -21,6 +21,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
 
+$(call inherit-product, hardware/dolby/motorola/dolby.mk)
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay-lineage
@@ -373,7 +375,4 @@ PRODUCT_COPY_FILES += \
 # Inherit from vendor blobs
 $(call inherit-product, vendor/motorola/sm6375-common/sm6375-common-vendor.mk)
 
-# crdroidandroid/android_hardware_dolby LunarisDolby
-$(call inherit-product, hardware/dolby/dolby.mk)
-# AxionAOSP/android_packages_apps_ViPER4AndroidFX v4a
 $(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
