@@ -97,8 +97,10 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    $(COMMON_PATH)/duck-rkp/compatibility_matrix.xml \
     hardware/motorola/vintf/device_framework_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
+
 DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(COMMON_PATH)/manifest.xml
 
@@ -184,6 +186,3 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # inherit from the proprietary version
 include vendor/motorola/sm6375-common/BoardConfigVendor.mk
-
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += device/motorola/sm6375-common/duck-rkp/compatibility_matrix.xml
-
